@@ -1,3 +1,11 @@
+# Employee CRUD Serverless Application
+
+## Setup
+
+1. **Install Dependencies:**
+   ```bash
+   npm install
+
 ## Deployment
 
 1. Set up your MongoDB connection string and JWT secret as environment variables.
