@@ -1,0 +1,63 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: selfknowledgetransfer
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: emplyee-services
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+    JWT_SECRET: ${env:JWT_SECRET}
+
+functions:
+  createEmployee:
+    handler: handler.createEmployee
+    events:
+      - http:
+          path: employees
+          method: post
+          cors: true
+
+  getEmployee:
+    handler: handler.getEmployee
+    events:
+      - http:
+          path: employees/{id}
+          method: get
+          cors: true
+
+  listEmployees:
+    handler: handler.listEmployees
+    events:
+      - http:
+          path: employees
+          method: get
+          cors: true
+
+  updateEmployee:
+    handler: handler.updateEmployee
+    events:
+      - http:
+          path: employees/{id}
+          method: put
+          cors: true
+
+  deleteEmployee:
+    handler: handler.deleteEmployee
+    events:
+      - http:
+          path: employees/{id}
+          method: delete
+          cors: true
+
+  generateToken:
+    handler: handler.generateToken
+    events:
+      - http:
+          path: token
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
